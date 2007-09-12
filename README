@@ -1,0 +1,8 @@
+ActsAsMessageable
+=================
+
+To Install:
+
+script/generate messageable
+
+rake db:migrate

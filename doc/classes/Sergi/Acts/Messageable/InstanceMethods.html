@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sergi::Acts::Messageable::InstanceMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sergi::Acts::Messageable::InstanceMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/acts_as_messageable_rb.html">
+                lib/acts_as_messageable.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Adds instance methods.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000024">mailbox</a>&nbsp;&nbsp;
+      <a href="#M000031">read_conversation</a>&nbsp;&nbsp;
+      <a href="#M000030">read_mail</a>&nbsp;&nbsp;
+      <a href="#M000026">reply</a>&nbsp;&nbsp;
+      <a href="#M000028">reply_to_all</a>&nbsp;&nbsp;
+      <a href="#M000029">reply_to_conversation</a>&nbsp;&nbsp;
+      <a href="#M000027">reply_to_sender</a>&nbsp;&nbsp;
+      <a href="#M000025">send_message</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000024.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000024.html');return false;">
+          <span class="method-name">mailbox</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns an instance of class type <a href="Mailbox.html">Mailbox</a> - this
+object essentially wraps the user&#8216;s mail messages and provides a
+clean interface for accessing them. see <a href="Mailbox.html">Mailbox</a>
+for more details.
+</p>
+<h4>example:</h4>
+<pre>
+   phil = User.find(3123)
+   phil.mailbox[:inbox].unread_mail      #returns all unread mail in your inbox
+   phil.mailbox[:sentbox].mail         #returns all sent mail messages
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000031.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000031.html');return false;">
+          <span class="method-name">read_conversation</span><span class="method-args">(conversation, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns an array of the user&#8216;s <a href="../../../Mail.html">Mail</a>
+associated with the given conversation. All mail is marked as read but the
+returning array is built before this so you can see which messages were
+unread when viewing the conversation.
+</p>
+<p>
+This returns deleted/trashed messages as well for the purpose of reading
+trashed convos, to disable this send the option &#8217;:conditions =&gt;
+&quot;mail.trashed != true&quot;&#8217;
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">conversation:</td><td>the <a href="../../../Conversation.html">Conversation</a> object that you
+want to read.
+
+</td></tr>
+<tr><td valign="top">options:</td><td>any options to filter the conversation, these are used as find options so
+all valid options for find will work.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+array of <a href="../../../Mail.html">Mail</a> belonging to the given
+conversation.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000030.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000030.html');return false;">
+          <span class="method-name">read_mail</span><span class="method-args">(mail)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the mail given as the parameter, marked as read.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000026.html');return false;">
+          <span class="method-name">reply</span><span class="method-args">(conversation, recipients, reply_body, subject = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+creates a new <a href="../../../Message.html">Message</a> associated with
+the given conversation and delivers the <a
+href="InstanceMethods.html#M000026">reply</a> to each of the given
+recipients.
+</p>
+<p>
+*explicitly calling this method is rare unless you are replying to a subset
+of the users involved in the conversation or if you are including someone
+that is not currently in the conversation. <a
+href="InstanceMethods.html#M000027">reply_to_sender</a>, <a
+href="InstanceMethods.html#M000028">reply_to_all</a>, and <a
+href="InstanceMethods.html#M000029">reply_to_conversation</a> will suffice
+in most cases.
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">conversation:</td><td>the <a href="../../../Conversation.html">Conversation</a> object that the
+mail you are responding to belongs.
+
+</td></tr>
+<tr><td valign="top">recipients:</td><td>a single User object or array of Users to deliver the <a
+href="InstanceMethods.html#M000026">reply</a> message to.
+
+</td></tr>
+<tr><td valign="top">reply_body:</td><td>the body of the <a href="InstanceMethods.html#M000026">reply</a> message.
+
+</td></tr>
+<tr><td valign="top">subject:</td><td>the subject of the message, defaults to &#8216;RE: [original
+subject]&#8217; if one isnt given.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+the sent <a href="../../../Mail.html">Mail</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000028.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000028.html');return false;">
+          <span class="method-name">reply_to_all</span><span class="method-args">(mail, reply_body, subject = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends a <a href="../../../Mail.html">Mail</a> to all of the recipients of
+the given mail message (excluding yourself).
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">mail:</td><td>the <a href="../../../Mail.html">Mail</a> object that you are replying to.
+
+</td></tr>
+<tr><td valign="top">reply_body:</td><td>the body of the <a href="InstanceMethods.html#M000026">reply</a> message.
+
+</td></tr>
+<tr><td valign="top">subject:</td><td>the subject of the message, defaults to &#8216;RE: [original
+subject]&#8217; if one isnt given.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+the sent <a href="../../../Mail.html">Mail</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000029.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000029.html');return false;">
+          <span class="method-name">reply_to_conversation</span><span class="method-args">(conversation, reply_body, subject = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends a <a href="../../../Mail.html">Mail</a> to all users involved in the
+given conversation (excluding yourself).
+</p>
+<p>
+*this may have undesired effects if users have been added to the
+conversation after it has begun. SEE acts_as_conversable if this is what
+you are doing.
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">conversation:</td><td>the <a href="../../../Conversation.html">Conversation</a> object that the
+mail you are responding to belongs.
+
+</td></tr>
+<tr><td valign="top">reply_body:</td><td>the body of the <a href="InstanceMethods.html#M000026">reply</a> message.
+
+</td></tr>
+<tr><td valign="top">subject:</td><td>the subject of the message, defaults to &#8216;RE: [original
+subject]&#8217; if one isnt given.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+the sent <a href="../../../Mail.html">Mail</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000027.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000027.html');return false;">
+          <span class="method-name">reply_to_sender</span><span class="method-args">(mail, reply_body, subject = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends a <a href="../../../Mail.html">Mail</a> to the sender of the given
+mail message.
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">mail:</td><td>the <a href="../../../Mail.html">Mail</a> object that you are replying to.
+
+</td></tr>
+<tr><td valign="top">reply_body:</td><td>the body of the <a href="InstanceMethods.html#M000026">reply</a> message.
+
+</td></tr>
+<tr><td valign="top">subject:</td><td>the subject of the message, defaults to &#8216;RE: [original
+subject]&#8217; if one isnt given.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+the sent <a href="../../../Mail.html">Mail</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000025.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000025.html');return false;">
+          <span class="method-name">send_message</span><span class="method-args">(recipients, msg_body, subject = '')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+creates new <a href="../../../Message.html">Message</a> and <a
+href="../../../Conversation.html">Conversation</a> objects from the given
+parameters and delivers <a href="../../../Mail.html">Mail</a> to each of
+the recipients&#8217; inbox.
+</p>
+<h4>params:</h4>
+<table>
+<tr><td valign="top">recipients:</td><td>a single user object or array of users to deliver the message to.
+
+</td></tr>
+<tr><td valign="top">msg_body:</td><td>the body of the message.
+
+</td></tr>
+<tr><td valign="top">subject:</td><td>the subject of the message, defaults to empty string if not provided.
+
+</td></tr>
+</table>
+<h4>returns:</h4>
+<p>
+the sent <a href="../../../Mail.html">Mail</a>.
+</p>
+<h4>example:</h4>
+<pre>
+   phil = User.find(3123)
+   todd = User.find(4141)
+   phil.send_message(todd, 'whats up for tonight?', 'hey guy')      #sends a Mail message to todd's inbox, and a Mail message to phil's sentbox
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

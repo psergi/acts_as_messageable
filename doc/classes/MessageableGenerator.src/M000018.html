@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>manifest (MessageableGenerator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File generators/messageable/messageable_generator.rb, line 2</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manifest</span>
+    <span class="ruby-identifier">record</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># Models</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">file</span> <span class="ruby-value str">&quot;models/conversation.rb&quot;</span>, <span class="ruby-value str">&quot;app/models/conversation.rb&quot;</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">file</span> <span class="ruby-value str">&quot;models/message.rb&quot;</span>, <span class="ruby-value str">&quot;app/models/message.rb&quot;</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">file</span> <span class="ruby-value str">&quot;models/mail.rb&quot;</span>, <span class="ruby-value str">&quot;app/models/mail.rb&quot;</span>
+      
+      <span class="ruby-comment cmt">#Migrations</span>
+      <span class="ruby-identifier">generate_migrations</span>(<span class="ruby-identifier">m</span>,<span class="ruby-node">%w(
+        create_conversations
+        create_messages
+        create_messages_recipients
+        create_mail
+      )</span>)
+      
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">readme</span> <span class="ruby-value str">&quot;INSTALL&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_migrations</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">names</span>)
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> [<span class="ruby-identifier">name</span>]
+      <span class="ruby-identifier">name</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">m</span>.<span class="ruby-identifier">migration_template</span> <span class="ruby-node">&quot;migrate/#{n}.rb&quot;</span>, <span class="ruby-value str">&quot;db/migrate&quot;</span>, <span class="ruby-identifier">:migration_file_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">n</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
