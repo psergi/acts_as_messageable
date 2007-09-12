@@ -16,12 +16,12 @@ class MessageableGenerator < Rails::Generator::Base
       
       m.readme "INSTALL"
     end
-    
-    def generate_migrations(record, names)
+  end
+  
+  def generate_migrations(record, names)
       name = name.is_a?(Array) ? name : [name]
       name.each do |n|
         m.migration_template "migrate/#{n}.rb", "db/migrate", :migration_file_name => n
       end
     end
-  end
 end
