@@ -4,5 +4,8 @@ ActsAsMessageable
 To Install:
 
 script/generate messageable
-
 rake db:migrate
+
+To Use:
+
+add 'acts_as_messageable' to your user model
