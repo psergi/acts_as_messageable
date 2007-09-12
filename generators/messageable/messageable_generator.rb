@@ -21,7 +21,6 @@ class MessageableGenerator < Rails::Generator::Base
   def generate_migrations(recorder, names)
       names = names.is_a?(Array) ? names : [names]
       names.each do |n|
-        puts n
         recorder.migration_template "migrate/#{n}.rb", "db/migrate", :migration_file_name => n
       end
     end
