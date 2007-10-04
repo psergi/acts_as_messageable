@@ -24,6 +24,7 @@ module Sergi #:nocdoc:
         #* :all - count of both read and unread mail.
         #* :read - count of read mail.
         #* :unread - count of unread mail.
+        #options:: see mail for acceptable options.
         #
         #====returns:
         #number of mail messages
@@ -182,8 +183,12 @@ module Sergi #:nocdoc:
           add_mailbox_condition!(default_options, @type)
           return update_mail("mail.read = false", default_options, options)
         end
-        #TODO:
+        #moves all mail matched by the options to the given mailbox. sent messages stay in the sentbox.
         #
+        #====params:
+        #mailbox:: the mailbox_type to move the mail messages to. (ex. :inbox, :trash)
+        #options:: see mail for acceptable options.
+        # 
         def move_to(mailbox, options = {})
           mailbox = mailbox.to_sym
           trash = mailbox == @user.mailbox_types[:deleted].to_sym
@@ -199,7 +204,11 @@ module Sergi #:nocdoc:
           end
           return update_mail("mail.trashed = true", default_options, options)
         end
-        #TODO:
+        #permanantly deletes all the mail messages matched by the options. Use move_to(:trash) instead if you want to send to user's trash without deleting.
+        #
+        #====params:
+        #options:: see mail for acceptable options.
+        # 
         def delete(options = {})
           default_options = {:conditions => ["mail.user_id = ?", @user.id]}
           add_mailbox_condition!(default_options, @type)
@@ -209,13 +218,17 @@ module Sergi #:nocdoc:
         def <<(msg)
           return self.add(msg)
         end
-        #TODO: fix this to work with conversations and other options like everything else
-        def empty_trash()
-          conditions = {:user_id => @user.id}
-          conditions[:mailbox] = @type.to_s unless @type == :all
-          Mail.delete_all(conditions)
+        #deletes all messages that have been trashed and match the options if passed.
+        #
+        #====params:
+        #options:: see mail for acceptable options.
+        # 
+        def empty_trash(options = {})
+          default_options = {:conditions => ["mail.user_id = ? AND mail.trashed = ?", @user.id, true]}
+          add_mailbox_condition!(default_options, @type)
+          return delete_mail(default_options, options)
         end
-        #TODO: comment this
+        #return true if the user is involved in the given conversation.
         def has_conversation?(conversation)
           return mail_count(:all, :conversation => conversation) != 0
         end

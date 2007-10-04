@@ -140,7 +140,7 @@ module Sergi #:nocdoc:
         end
         #sends a Mail to all users involved in the given conversation (excluding yourself).
         #
-        #*this may have undesired effects if users have been added to the conversation after it has begun. SEE acts_as_conversable if this is what you are doing.
+        #*this may have undesired effects if users have been added to the conversation after it has begun.
         #
         #====params:
         #conversation::
