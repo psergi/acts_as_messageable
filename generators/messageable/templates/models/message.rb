@@ -30,6 +30,9 @@ class Message < ActiveRecord::Base
   end
   
   protected
+  #[empty method]
+  #
+  #this gets called when a message is delivered and the clean param is set (default). Implement this if you wish to clean out illegal content such as scripts or anything that will break layout. This is left empty because what is considered illegal content varies.
   def clean()
     #strip all illegal content here. (scripts, shit that will break layout, etc.)
   end
