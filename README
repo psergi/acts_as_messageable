@@ -1,16 +1,26 @@
 =acts_as_messageable
+
 private messaging plugin for rails.
 
+
 ===installation:
+
     script/plugin install http://actsasmessageable.googlecode.com/svn/tags/acts_as_messageable-1.0.0
     script/generate messageable
     rake db:migrate
 
+
 ===usage:
+
     add 'acts_as_messageable' to your user model
 
+
 ===license:
+
     MIT License
+    
+    
 ===author:
+
     phil sergi [www.philsergi.com]
 
