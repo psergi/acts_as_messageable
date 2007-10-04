@@ -7,5 +7,5 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
   rdoc.title = "acts_as_messageable"
-  rdoc.rdoc_dir = 'rdoc' # rdoc output folder
+  rdoc.rdoc_dir = 'doc' # rdoc output folder
 end
