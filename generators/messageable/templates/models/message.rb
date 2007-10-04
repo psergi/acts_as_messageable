@@ -16,7 +16,8 @@ class Message < ActiveRecord::Base
   #clean:: calls the clean method if this is set (must be implemented)
   #
   def deliver(mailbox_type, clean = true)
-    self.clean() if clean
+    clean() if clean
+    self.save()
     self.recipients.each do |r|
       r.mailbox[mailbox_type] << self
     end
@@ -28,10 +29,8 @@ class Message < ActiveRecord::Base
     self.on_deliver_callback = method
   end
   
-  private
-  
+  protected
   def clean()
     #strip all illegal content here. (scripts, shit that will break layout, etc.)
-    self.save()
   end
 end

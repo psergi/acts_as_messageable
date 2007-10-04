@@ -45,7 +45,7 @@ class Conversation < ActiveRecord::Base
     return @users
   end
   
-  private
+  protected
   def clean()
     return if(subject.nil?)
     #strip all illegal content here. (scripts, shit that will break layout, etc.)
