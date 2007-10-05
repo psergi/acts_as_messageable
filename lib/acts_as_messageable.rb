@@ -136,7 +136,15 @@ module Sergi #:nocdoc:
         #the sent Mail.
         #
         def reply_to_all(mail, reply_body, subject = nil)
-          return reply(mail.conversation, mail.message.recipients, reply_body, subject)
+          msg = mail.message
+          recipients = msg.recipients.clone()
+          if(msg.sender != self)
+            recipients.delete(self)
+            if(!recipients.include?(msg.sender))
+              recipients << msg.sender
+            end
+          end
+          return reply(mail.conversation, recipients, reply_body, subject)
         end
         #sends a Mail to all users involved in the given conversation (excluding yourself).
         #
