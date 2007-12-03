@@ -1,7 +1,7 @@
 class CreateMessages < ActiveRecord::Migration
   def self.up
     create_table :messages do |t|
-      t.column :body, :text, :default => ""
+      t.column :body, :text
       t.column :subject, :string, :default => ""
       t.column :headers, :text
       t.column :sender_id, :integer, :null => false
